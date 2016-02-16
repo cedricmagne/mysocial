@@ -19,7 +19,8 @@ Route::get('mypage', function () {
   $data = array(
     'var1' => 'food',
     'var2' => 'car',
-    'var3' => 'cicle'
+    'var3' => 'cicle',
+    'orders' => App\Order::all()
   );
   return view('mypage', $data);
 });
