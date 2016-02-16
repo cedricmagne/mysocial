@@ -25,18 +25,7 @@ Route::get('mypage', function () {
   return view('mypage', $data);
 });
 
-Route::get('customer/{id}', function ($id) {
-  $customer = App\Customer::find($id);
-  echo $customer->name . '<br />';
-  echo 'Orders: <br />';
-  echo '<ul>';
-  foreach ($customer->orders as $order) {
-    echo '<li>';
-    echo $order->name;
-    echo '</li>';
-  }
-  echo '</ul>';
-});
+Route::get('customer/{id}', 'CustomerController@customer');
 
 Route::get('customer_name', function () {
   $customer = App\Customer::where('name', '=', 'Luiz Felipe')->first();
