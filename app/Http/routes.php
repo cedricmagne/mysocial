@@ -15,6 +15,15 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('mypage', function () {
+  $data = array(
+    'var1' => 'food',
+    'var2' => 'car',
+    'var3' => 'cicle'
+  );
+  return view('mypage', $data);
+});
+
 Route::get('customer/{id}', function ($id) {
   $customer = App\Customer::find($id);
   echo $customer->name . '<br />';
