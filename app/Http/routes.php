@@ -12,7 +12,39 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+  return view('welcome');
+});
+
+Route::get('hello', function () {
+  echo "Hi ";
+});
+
+Route::get('hello/{name}', function ($name) {
+  echo "Hi " . $name;
+});
+
+Route::get('hello/{name}/{id}', function ($name, $id) {
+  echo "Hi " . $name . " " . $id;
+});
+
+Route::post('test', function () {
+  echo 'POST';
+});
+
+Route::get('test', function () {
+  echo 'GET';
+  echo '<form method="POST" action="test">';
+  echo '<input type="submit">';
+  echo '<input type="hidden" value="DELETE" name="_method"';
+  echo '</form>';
+});
+
+Route::put('test', function () {
+  echo 'PUT';
+});
+
+Route::delete('test', function () {
+  echo 'DELETE';
 });
 
 /*
@@ -27,5 +59,5 @@ Route::get('/', function () {
 */
 
 Route::group(['middleware' => ['web']], function () {
-    //
+  //
 });
