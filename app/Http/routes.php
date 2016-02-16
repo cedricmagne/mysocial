@@ -15,6 +15,16 @@ Route::get('/', function () {
   return view('welcome');
 });
 
+Route::get('customer/{id}', function ($id) {
+  $customer = App\Customer::find($id);
+  echo $customer->name;
+});
+
+Route::get('customer_name', function () {
+  $customer = App\Customer::where('name', '=', 'Luiz Felipe')->first();
+  echo $customer->id;
+});
+
 Route::get('hello', function () {
   echo "Hi ";
 });
