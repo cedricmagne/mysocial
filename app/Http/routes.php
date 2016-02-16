@@ -17,12 +17,28 @@ Route::get('/', function () {
 
 Route::get('customer/{id}', function ($id) {
   $customer = App\Customer::find($id);
-  echo $customer->name;
+  echo $customer->name . '<br />';
+  echo 'Orders: <br />';
+  echo '<ul>';
+  foreach ($customer->orders as $order) {
+    echo '<li>';
+    echo $order->name;
+    echo '</li>';
+  }
+  echo '</ul>';
 });
 
 Route::get('customer_name', function () {
   $customer = App\Customer::where('name', '=', 'Luiz Felipe')->first();
   echo $customer->id;
+});
+
+Route::get('orders', function () {
+  $orders = App\Order::all();
+  foreach ($orders as $order) {
+    $customer = App\Customer::find($order->customer_id);
+    echo $order->name . ": Ordered by " . $order->customer->name  . '. <br />';
+  }
 });
 
 Route::get('hello', function () {
