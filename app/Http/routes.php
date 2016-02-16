@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-  return view('welcome');
-});
-
 Route::get('mypage', function () {
   $data = array(
     'var1' => 'food',
@@ -27,51 +23,6 @@ Route::get('mypage', function () {
 
 Route::get('customer/{id}', 'CustomerController@customer');
 
-Route::get('customer_name', function () {
-  $customer = App\Customer::where('name', '=', 'Luiz Felipe')->first();
-  echo $customer->id;
-});
-
-Route::get('orders', function () {
-  $orders = App\Order::all();
-  foreach ($orders as $order) {
-    $customer = App\Customer::find($order->customer_id);
-    echo $order->name . ": Ordered by " . $order->customer->name  . '. <br />';
-  }
-});
-
-Route::get('hello', function () {
-  echo "Hi ";
-});
-
-Route::get('hello/{name}', function ($name) {
-  echo "Hi " . $name;
-});
-
-Route::get('hello/{name}/{id}', function ($name, $id) {
-  echo "Hi " . $name . " " . $id;
-});
-
-Route::post('test', function () {
-  echo 'POST';
-});
-
-Route::get('test', function () {
-  echo 'GET';
-  echo '<form method="POST" action="test">';
-  echo '<input type="submit">';
-  echo '<input type="hidden" value="DELETE" name="_method"';
-  echo '</form>';
-});
-
-Route::put('test', function () {
-  echo 'PUT';
-});
-
-Route::delete('test', function () {
-  echo 'DELETE';
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -83,6 +34,12 @@ Route::delete('test', function () {
 |
 */
 
-Route::group(['middleware' => ['web']], function () {
-  //
+Route::group(['middleware' => 'web'], function () {
+    Route::auth();
+
+    Route::get('/', function () {
+      return view('welcome');
+    });
+
+    Route::get('/home', 'HomeController@index');
 });
