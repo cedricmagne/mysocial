@@ -11,18 +11,6 @@
 |
 */
 
-Route::get('mypage', function () {
-  $data = array(
-    'var1' => 'food',
-    'var2' => 'car',
-    'var3' => 'cicle',
-    'orders' => App\Order::all()
-  );
-  return view('mypage', $data);
-});
-
-Route::get('customer/{id}', 'CustomerController@customer');
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -39,6 +27,18 @@ Route::group(['middleware' => 'web'], function () {
 
     Route::get('/', function () {
       return view('welcome');
+    });
+
+    Route::get('customer/{id}', 'CustomerController@customer');
+
+    Route::get('mypage', function () {
+      $data = array(
+        'var1' => 'food',
+        'var2' => 'car',
+        'var3' => 'cicle',
+        'orders' => App\Order::all()
+      );
+      return view('mypage', $data);
     });
 
     Route::get('/home', 'HomeController@index');
