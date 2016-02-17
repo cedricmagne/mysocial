@@ -21,6 +21,7 @@
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+use Illuminate\Http\Request;
 
 Route::group(['middleware' => 'web'], function () {
     Route::auth();
@@ -42,4 +43,11 @@ Route::group(['middleware' => 'web'], function () {
     });
 
     Route::get('/home', 'HomeController@index');
-});
+
+    Route::get('form', function () {
+      return view('form');
+    });
+    Route::post('post_to_me', function (Request $request) {
+      echo $request->input('name');
+    });
+  });
