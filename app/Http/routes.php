@@ -11,10 +11,6 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
-
 /*
 |--------------------------------------------------------------------------
 | Application Routes
@@ -26,6 +22,17 @@ Route::get('/', function () {
 |
 */
 
+Route::get('/', function () {
+  return view('welcome');
+});
+
+Route::post('/signup', [
+  'uses' => 'UserController@postSignUp',
+  'as' => 'signup'
+]);
+
 Route::group(['middleware' => ['web']], function () {
-    //
+
+
+
 });
