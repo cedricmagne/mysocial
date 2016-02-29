@@ -27,10 +27,11 @@ Your dashboard
       <header>
         <h3> What other people say....</h3>
       </header>
+      @foreach($posts as $post)
       <article class="post">
-        <p> foca foca </p>
+        <p>{{$post->body_post}}</p>
         <div class="info">
-          Post by Luiz on date
+          Post by {{$post->user->name}} on {{$post->created_at}}
         </div>
         <div class="interaction">
           <a href="#">Like</a>
@@ -39,18 +40,7 @@ Your dashboard
           <a href="#">Delete</a>
         </div>
       </article>
-      <article class="post">
-        <p> foca foca </p>
-        <div class="info">
-          Post by Luiz on date
-        </div>
-        <div class="interaction">
-          <a href="#">Like</a>
-          <a href="#">Dislike</a>
-          <a href="#">Edit</a>
-          <a href="#">Delete</a>
-        </div>
-      </article>
+      @endforeach
     </div>
   </section>
 @endsection
