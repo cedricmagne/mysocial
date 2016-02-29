@@ -10,11 +10,18 @@ use Illuminate\Http\Request;
 class PostController extends Controller {
 
   public function postCreatePost(Request $request) {
-    // validation
+
+    $this->validate($request, [
+      'body_post' => 'required|max:1000'
+    ]);
+
     $post = new Post();
     $post->body_post = $request['body_post'];
-    $request->user()->posts()->save($post);
+    $message = 'There was a error';
+    if($request->user()->posts()->save($post)) {
+      $message = 'Post succesfully created';
+    }
 
-    return redirect()->route('dashboard');
+    return redirect()->route('dashboard')->with(['message' => $message]);
   }
 }

@@ -5,6 +5,7 @@ Your dashboard
 @endsection
 
 @section('content')
+@include('includes.message_block')
   <section class="row new-post">
     <div class="col-md-6 col-md-offset-3">
       <header>
@@ -14,8 +15,7 @@ Your dashboard
       </header>
       <form action="{{ route('post.create') }}" method="post">
         <div class="form-group">
-          <textarea class="form-control" name="body_post" id="new-post" rows="5" placeholder="Your Post">
-          </textarea>
+          <textarea class="form-control" name="body_post" id="new-post" rows="5" placeholder="Your Post"></textarea>
         </div>
         <button type="submit" class="btn btn-primary"> Create Post</button>
         <input type="hidden" value="{{ Session::token() }}" name="_token">
