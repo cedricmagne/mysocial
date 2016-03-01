@@ -34,10 +34,13 @@ Your dashboard
           Post by {{$post->user->name}} on {{$post->created_at}}
         </div>
         <div class="interaction">
-          <a href="#">Like</a>
+          <a href="#">Like</a> |
           <a href="#">Dislike</a>
-          <a href="#">Edit</a>
+          @if(Auth::user() == $post->user)
+          |
+          <a href="#">Edit</a> |
           <a href="{{route('get.delete', ['post_id' => $post->id])}}">Delete</a>
+          @endif
         </div>
       </article>
       @endforeach
