@@ -10,6 +10,10 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller {
 
+  /*
+  Sign Up
+  Post method
+  */
   public function postSignUp(Request $request) {
 
     // validate
